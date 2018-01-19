@@ -14,7 +14,7 @@ export function loadMovies(searchParam, dispatch){
 		// indicate we are loading movies now
 		// dispatch(requestMovies());
 
-		fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=d3df7f4c&s=${searchParam}`)
+		fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=65a64d24&s=${searchParam}`)
 	  .then((response) => response.json())
 	  .then((responseJson) => {
 	    // "we successfully got back a response" scenario
