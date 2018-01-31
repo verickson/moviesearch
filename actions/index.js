@@ -25,18 +25,32 @@ export function loadMovies(searchParam, dispatch){
 	    // (an action <--> view only)
 	    // --> dispatch change the view to the success view
 
-			dispatch({
-          type: LOAD_SUCCESS,
-          movies: responseJson.Search
-        })
+				if(responseJson.Response != 'False'){
+					dispatch({
+							type: LOAD_SUCCESS,
+							movies: responseJson.Search
+						})
+				}
+				else{
+						dispatch({
+			          type: LOAD_SUCCESS,
+			          movies: "no movie"
+			        })
+				}
 	  })
 		// ...what about failure?...
-		// .catch((err) => {
-		// 	console.log(err);
-		// })
+		.catch((err) => {
+			dispatch(handleFailure(err))
+		}
+		)
 	}
 };
-
+export const handleFailure = (err) => {
+	return {
+		type: LOAD_FAILURE,
+		errorMessage: err.Error
+	};
+};
 export const requestMovies = () => {
 	// create action for requesting movies
 	// ...
