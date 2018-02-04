@@ -38,6 +38,7 @@ export default function(state = initialState, action) {
         ...state,
         isLoading: false,
         isError: false,
+        errorMessage: action.errorMessage,
         isSuccess: false,
       }
     }

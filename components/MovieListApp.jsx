@@ -5,12 +5,18 @@ import MovieList from './MovieList';
 
 const mapStateToProps = (state) => {
   return{
-    movies:state.movies
+    movies:state.movies,
+    //requestPending: state.isLoading,
+    isError: state.isError,
+    errorMessage: state.errorMessage
   }
 };
 
 const mapDispatchToProps = (dispatch) => {
   return{
+    onDidMount: () => {
+      loadMovies
+    },
     onSearchChange: (mov) =>{
       dispatch(loadMovies(mov, dispatch));
     }

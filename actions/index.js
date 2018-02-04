@@ -26,23 +26,16 @@ export function loadMovies(searchParam, dispatch){
 	    // --> dispatch change the view to the success view
 
 				if(responseJson.Response != 'False'){
-					dispatch({
-							type: LOAD_SUCCESS,
-							movies: responseJson.Search
-						})
+					dispatch(someActionCreator(responseJson))
 				}
 				else{
-						dispatch({
-			          type: LOAD_SUCCESS,
-			          movies: "no movie"
-			        })
+						dispatch(handleFailure(responseJson))
 				}
 	  })
 		// ...what about failure?...
 		.catch((err) => {
 			dispatch(handleFailure(err))
-		}
-		)
+		})
 	}
 };
 export const handleFailure = (err) => {
@@ -59,12 +52,13 @@ export const requestMovies = () => {
 	}
 };
 
-// export const someActionCreator = (jsonData) => {
-//   return {
-//     type: LOAD_SUCCESS,
-//     // anything else you want!!
-//     // include movies coming from the data
-//     data: jsonData.Search
-//     // TODO: handle edge cases: null response, no search results
-//   }
-// };
+
+export const someActionCreator = (jsonData) => {
+  return {
+    type: LOAD_SUCCESS,
+    // anything else you want!!
+    // include movies coming from the data
+    movies: jsonData.Search
+    // TODO: handle edge cases: null response, no search results
+  }
+}

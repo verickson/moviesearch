@@ -12,7 +12,7 @@ class MovieList extends Component {
 	}
 
 	componentDidMount() {
-		// ...
+		this.props.onDidMount();
 	}
 
 	render() {
